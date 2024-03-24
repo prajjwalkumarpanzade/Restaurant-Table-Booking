@@ -1,19 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import '../App.css';
-import SignUp from '../pages/signup/container/SignUp';
-import SignIn from '../pages/signin/container/SignIn';
-import BookTable from '../pages/booktable/container/BookTable';
-import AdminDashboard from '../pages/admin_dashboard/container/admindashboard';
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from './Routes';
 
 function App() {
   return ( 
-    <div className="App">
-       {/* <SignIn /> */}
-       {/* <SignUp/> */}
-       {/* <BookTable/> */}
-       <AdminDashboard />
-    </div>
+    <Router>
+      <Routes />
+  </Router>
   );
 }
 
