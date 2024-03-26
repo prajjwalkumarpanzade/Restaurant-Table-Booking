@@ -25,7 +25,7 @@ const SignUpForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post("YOUR_API_ENDPOINT", formData);
+      await axios.post("http://localhost:8000/admin_data", formData);
       alert("User signed up successfully!");
       setFormData({
         Name: "",

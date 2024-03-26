@@ -1,0 +1,179 @@
+{
+  "tabledetails": [
+    {
+      "table_id": 1,
+      "availability": true,
+      "booking_id": null
+    },
+    {
+      "table_id": 2,
+      "availability": false,
+      "booking_id": 123
+    },
+    {
+      "table_id": 3,
+      "availability": true,
+      "booking_id": null
+    },
+    {
+      "table_id": 4,
+      "availability": true,
+      "booking_id": null
+    },
+    {
+      "table_id": 5,
+      "availability": true,
+      "booking_id": null
+    }
+  ],
+  "tablebookings": [
+    {
+      "id": 123,
+      "name": "John Doe",
+      "contactNumber": "+1234567890",
+      "numberOfPersons": 4,
+      "date": "2024-03-26",
+      "slotId": 1,
+      "tableNo": 2
+    },
+    {
+      "id": "cabf",
+      "name": "test",
+      "contactNumber": "9554722666",
+      "numberOfPersons": 1,
+      "date": "2024-03-26",
+      "slotId": "3",
+      "tableNo": 4
+    },
+    {
+      "id": "2d10",
+      "name": "hghg",
+      "contactNumber": "8574859635",
+      "numberOfPersons": 1,
+      "date": "2024-03-26",
+      "slotId": "1",
+      "tableNo": 2
+    },
+    {
+      "id": "4949",
+      "name": "test34",
+      "contactNumber": "9857485965",
+      "numberOfPersons": 1,
+      "date": "2024-03-27",
+      "slotId": "4",
+      "tableNo": 3
+    },
+    {
+      "id": "1400",
+      "name": "Prajjwal",
+      "contactNumber": "9442155777",
+      "numberOfPersons": "2",
+      "date": "2024-03-28",
+      "slotId": "1",
+      "tableNo": 2
+    }
+  ],
+  "timeslots": [
+    {
+      "slot_id": 1,
+      "start_time": "10:00:00",
+      "end_time": "11:00:00",
+      "table_id": 2
+    },
+    {
+      "slot_id": 2,
+      "start_time": "11:00:00",
+      "end_time": "12:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 3,
+      "start_time": "12:00:00",
+      "end_time": "01:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 4,
+      "start_time": "01:00:00",
+      "end_time": "02:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 5,
+      "start_time": "02:00:00",
+      "end_time": "03:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 6,
+      "start_time": "03:00:00",
+      "end_time": "04:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 7,
+      "start_time": "04:00:00",
+      "end_time": "05:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 8,
+      "start_time": "05:00:00",
+      "end_time": "06:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 9,
+      "start_time": "06:00:00",
+      "end_time": "07:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 10,
+      "start_time": "07:00:00",
+      "end_time": "08:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 11,
+      "start_time": "08:00:00",
+      "end_time": "09:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 12,
+      "start_time": "09:00:00",
+      "end_time": "10:00:00",
+      "table_id": null
+    },
+    {
+      "slot_id": 13,
+      "start_time": "10:00:00",
+      "end_time": "11:00:00",
+      "table_id": null
+    }
+  ],
+  "admin_data": [
+    {
+      "admin_id": 1,
+      "name": "Prajjwalkumar",
+      "contact_no": "+9876543210",
+      "email": "admin@example.com",
+      "password": "admin@123"
+    },
+    {
+      "id": "a105",
+      "Name": "kumar",
+      "email": "kumar@gmail.com",
+      "contactno": "9112422555",
+      "Password": "kumar@123"
+    },
+    {
+      "id": "bd8d",
+      "Name": "prajjwalkumar panzade",
+      "email": "prajjwalbpanzade22@gmail.com",
+      "contactno": "9668544777",
+      "Password": "Prajjwal@123"
+    }
+  ]
+}

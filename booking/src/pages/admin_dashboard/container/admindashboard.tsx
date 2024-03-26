@@ -1,20 +1,20 @@
-import "./admindashboard.css"
+// pages/AdminDashboard.tsx
+import React from "react";
+import { Link } from "react-router-dom";
+import "../container/AdminDashboard.css";
+import Navbar from "../../../shared/Navbar"; 
+
 
 const AdminDashboard = () => {
-    return (
-        <div>
-            <div>
-                <nav className="navbar">
-                    <ul>
-                        <li>Home</li>
-                        <li>Book Table</li>
-                        <li>Show Booking</li>
-                    </ul>
-                </nav>
-                <h1>Admin Dashboard</h1>
-            </div>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Navbar />
+      <div className="admin-content">
+        <h1>Welcome to Admin Dashboard</h1>
+        <p>You can manage tables and bookings here.</p>
+      </div>
+    </div>
+  );
+};
 
 export default AdminDashboard;
