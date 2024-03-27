@@ -6,10 +6,10 @@ import "../container/SignUpForm.css";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
-    Name: "",
+    name: "",
     email: "",
-    contactno: "",
-    Password: ""
+    contact_no: "",
+    password: ""
   });
 
   const navigate = useNavigate();
@@ -25,19 +25,20 @@ const SignUpForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/admin_data", formData);
+      await axios.post("http://localhost:8080/admin/create", formData);
       alert("User signed up successfully!");
       setFormData({
-        Name: "",
+        name: "",
         email: "",
-        contactno: "",
-        Password: ""
+        contact_no: "",
+        password: ""
       });
       navigate("/SignIn"); // Redirect to the success page
     } catch (error) {
       console.error("Error signing up:", error);
       alert("An error occurred. Please try again.");
     }
+    console.log(formData)
   };
 
   return (
@@ -46,9 +47,9 @@ const SignUpForm = () => {
       <form onSubmit={handleSubmit}>
         <InputField
           type="text"
-          name="Name"
+          name="name"
           placeholder="Name"
-          value={formData.Name}
+          value={formData.name}
           onChange={handleChange}
           required
         />
@@ -62,18 +63,18 @@ const SignUpForm = () => {
         />
         <InputField
           type="tel"
-          name="contactno"
+          name="contact_no"
           placeholder="contact number"
-          value={formData.contactno}
+          value={formData.contact_no}
           onChange={handleChange}
           minLength={10}
           required
         />
         <InputField
           type="password"
-          name="Password"
+          name="password"
           placeholder="Password"
-          value={formData.Password}
+          value={formData.password}
           onChange={handleChange}
           minLength={6}
           required

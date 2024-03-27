@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
+
+interface Slot {
+  slot_id: number;
+  start_time: string;
+  end_time: string;
+  table_id: number[];
+}
 
 const BookTableForm = () => {
   const [formData, setFormData] = useState({
     Name: "",
     contactno: "",
     number: 1,
-    date: new Date().toISOString().split('T')[0],
+    date: new Date().toISOString().split("T")[0],
     slot: ""
   });
 
-  const [slots, setSlots] = useState<any[]>([]);
+  const [slots, setSlots] = useState<Slot[]>([]);
 
   useEffect(() => {
     fetchSlots();
@@ -18,11 +25,11 @@ const BookTableForm = () => {
 
   const fetchSlots = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/timeslots");
+      const response = await axios.get<Slot[]>("http://localhost:8080/getslots");
       setSlots(response.data);
     } catch (error) {
       console.error("Error fetching slots:", error);
-      alert("An error occurred. Please try again.");
+      alert("An error occurred while fetching slots. Please try again.");
     }
   };
 
@@ -34,7 +41,7 @@ const BookTableForm = () => {
     }));
   };
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSlotChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -44,41 +51,47 @@ const BookTableForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formData.Name) {
+      alert("Name field cannot be empty.");
+      return;
+    }
     try {
       const selectedSlot = slots.find((slot) => slot.slot_id.toString() === formData.slot);
-  
+
       if (!selectedSlot) {
         alert("Please select a valid slot.");
         return;
       }
-  
-      await axios.post("http://localhost:8000/tablebookings", {
-        name: formData.Name,
-        contactNumber: formData.contactno,
-        numberOfPersons: formData.number,
+
+      // Choose a random table from the available tables for the selected slot
+      const randomTableIndex = Math.floor(Math.random() * selectedSlot.table_id.length);
+      const selectedTableId = selectedSlot.table_id[randomTableIndex];
+
+      await axios.post("http://localhost:8080/bookings", {
+        customer_name: formData.Name,
+        contact_no: formData.contactno,
         date: formData.date,
-        slotId: formData.slot,
-        tableNo: selectedSlot.table_id
+        slot_id: formData.slot,
+        table_id: selectedTableId 
       });
-  
+
       alert("Table booked successfully!");
       setFormData({
         Name: "",
         contactno: "",
         number: 1,
-        date: new Date().toISOString().split('T')[0],
+        date: new Date().toISOString().split("T")[0],
         slot: ""
       });
     } catch (error) {
       console.error("Error booking table:", error);
-      alert("An error occurred. Please try again.");
+      alert("An error occurred while booking the table. Please try again.");
     }
   };
-  
 
   return (
-    <div>
-      <h1>Book Table</h1>
+    <div className="book-table-form">
+      <h1 style={{color:"black"}}>Book Table</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
@@ -113,22 +126,24 @@ const BookTableForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Choose Date:</label><br></br><br></br>
+          <label>Choose Date:</label>
+          <br />
+          <br />
           <input
             type="date"
             name="date"
             value={formData.date}
-            min={new Date().toISOString().split('T')[0]}
+            min={new Date().toISOString().split("T")[0]}
             onChange={handleInputChange}
             required
           />
         </div>
         <div className="form-group">
-          <label>Choose Time Slot:</label>
           <select
+            className="form-select"
             name="slot"
             value={formData.slot}
-            onChange={handleSelectChange}
+            onChange={handleSlotChange}
             required
           >
             <option value="">Select a slot</option>
