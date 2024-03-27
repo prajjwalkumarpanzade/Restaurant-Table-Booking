@@ -4,7 +4,13 @@ body {
     padding: 0;
     background-size: cover; /* Adjusts the background image size to cover the entire body */
     background-repeat: no-repeat; /* Prevents the background image from repeating */
+    background-image: url('../../../assets/restaurant.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
+
+  
   .signup-container {
     max-width: 400px;
     margin: 50px auto;

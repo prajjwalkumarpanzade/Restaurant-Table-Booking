@@ -21,10 +21,14 @@ const SignInForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/admin_data", formData);
-      // Assuming successful sign-in means it's safe to navigate to the admin dashboard
-      alert("Sign in successful!");
-      navigate("/admindashboard");
+      
+      const response = await axios.post("http://localhost:8000/admin_data", formData);
+      if (response.status === 200) {
+        alert("Sign in successful!");
+        navigate("/admindashboard");
+      } else {
+        alert("Sign in failed. Please try again.");
+      }
     } catch (error) {
       console.error("Error signing in:", error);
       alert("An error occurred. Please try again.");
@@ -36,20 +40,20 @@ const SignInForm = () => {
       <h2>Sign in</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
+          <label>Email:</label>
           <input
             type="email"
             name="email"
-            placeholder="Email"
             value={formData.email}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
+          <label>Password:</label>
           <input
             type="password"
             name="password"
-            placeholder="Password"
             value={formData.password}
             onChange={handleChange}
             required
