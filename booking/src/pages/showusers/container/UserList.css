@@ -7,20 +7,20 @@
   
   .user-list-container th,
   .user-list-container td {
-    border: 1px solid #555; /* Border color */
+    border: 1px solid #555; 
     padding: 8px;
     text-align: left;
   }
   
   .user-list-container th {
-    background-color: #333; /* Header background color */
+    background-color: #333; 
   }
   
   .user-list-container tr:nth-child(even) {
-    background-color: #444; /* Even row background color */
+    background-color: #444; 
   }
   
   .user-list-container tr:hover {
-    background-color: #666; /* Hover row background color */
+    background-color: #666; 
   }
   

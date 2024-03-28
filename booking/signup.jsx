@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { FormikValues, FormikHelpers } from "formik";
 import InputField from "./InputField";
 import { useNavigate } from "react-router-dom";
 import "../container/SignUpForm.css";
@@ -24,7 +23,7 @@ const SignUpForm = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
       await axios.post("http://localhost:8080/admin/create", formData);
       alert("User signed up successfully!");
@@ -34,11 +33,12 @@ const SignUpForm = () => {
         contact_no: "",
         password: ""
       });
-      navigate("/SignIn");
+      navigate("/SignIn"); 
     } catch (error) {
       console.error("Error signing up:", error);
-      alert("Enter valid Data");
+      alert("An error occurred. Please try again.");
     }
+    console.log(formData)
   };
 
   return (
@@ -81,9 +81,10 @@ const SignUpForm = () => {
         />
         <button type="submit">Sign Up</button>
       </form>
-      <p style={{color:"black"}}>Already have an account? <a href="/signin">Sign In</a></p>
+      <p style={{color:"black"}}>Already have account..  <a href="/signin">SignIn</a></p>
     </div>
   );
 };
 
 export default SignUpForm;
+

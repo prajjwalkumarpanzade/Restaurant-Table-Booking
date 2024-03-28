@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import './SignUp.css'
 import SignUpForm from "../components/SignUpForm";
 

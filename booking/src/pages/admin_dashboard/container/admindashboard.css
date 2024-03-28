@@ -1,13 +1,13 @@
 
 
-/* Container for the admin dashboard */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Navigation bar styles */
+
 .navbar {
     background-color: #333;
     overflow: hidden;
@@ -46,7 +46,7 @@
     
 }
 
-/* Example styles for the content */
+
 .content {
     padding: 20px;
     background-color: #f4f4f4;
@@ -68,18 +68,18 @@ h1, p {
     border: 1px solid #555;
     padding: 8px;
     text-align: left;
-    color: #fff; /* Text color */
+    color: #fff; 
   }
   
   .slot-table th {
-    background-color: #333; /* Header background color */
+    background-color: #333; 
   }
   
   .slot-table tr:nth-child(even) {
-    background-color: #520b48; /* Even row background color */
+    background-color: #520b48;
   }
   
   .slot-table tr:hover {
-    background-color: #666; /* Hover row background color */
+    background-color: #666;
   }
   

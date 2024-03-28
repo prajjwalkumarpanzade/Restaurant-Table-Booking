@@ -2,24 +2,24 @@
   width: 80%;
   border-collapse: collapse;
   margin-top: 20px;
-  color: #fff; /* Text color */
+  color: #fff; 
 }
 
 .booking-table th,
 .booking-table td {
-  border: 1px solid #555; /* Border color */
+  border: 1px solid #555; 
   padding: 8px;
   text-align: left;
 }
 
 .booking-table th {
-  background-color: #333; /* Header background color */
+  background-color: #333; 
 }
 
 .booking-table tr:nth-child(even) {
-  background-color: #444; /* Even row background color */
+  background-color: #444; 
 }
 
 .booking-table tr:hover {
-  background-color: #666; /* Hover row background color */
+  background-color: #666; 
 }

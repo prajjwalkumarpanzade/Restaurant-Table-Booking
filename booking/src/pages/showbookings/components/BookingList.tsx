@@ -1,9 +1,8 @@
-// BookingList.tsx
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../container/BookingList.css";
 import Navbar from "../../../shared/Navbar";
+import { useNavigate } from "react-router-dom";
 
 interface Booking {
   booking_id: number;
@@ -24,6 +23,7 @@ const BookingList = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [slots, setSlots] = useState<Slot[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const navigate=useNavigate();
 
   useEffect(() => {
     fetchBookings();
@@ -50,11 +50,53 @@ const BookingList = () => {
     }
   };
 
+  const handleEditBooking = async (bookingId: number) => {
+    try {
+      const bookingToEdit = bookings.find(booking => booking.booking_id === bookingId);
+      
+      if (!bookingToEdit) {
+        alert("Booking not found.");
+        return;
+      }
+
+      await axios.put(`http://localhost:8080/admin/update_table/${bookingId}`, {
+        bookingId:bookingId,
+        customer_name: bookingToEdit.customer_name,
+        contact_no: bookingToEdit.contact_no,
+        date: bookingToEdit.date,
+        slot_id: bookingToEdit.slot_id,
+        table_id: bookingToEdit.table_id
+        
+      });
+      navigate("/booktable")
+    } catch (error) {
+      console.error("Error updating booking:", error);
+      alert("An error occurred while updating the booking. Please try again.");
+    }
+  };
+
+  
+  
+
+  const handleCancelBooking = async (bookingId: number) => {
+    console.log(bookingId);
+    try {
+      await axios.delete(`http://localhost:8080/admin/cancel_table/${bookingId}`);
+      
+      console.log("Booking canceled successfully:", bookingId);
+      
+      fetchBookings();
+    } catch (error) {
+      console.error("Error canceling booking:", error);
+      setError("An error occurred while canceling the booking. Please try again.");
+    }
+  };
+
   return (
     <div>
       <center>
         <Navbar />
-        <h2>Booking List</h2>
+        <h1>Booking List</h1>
         {error ? (
           <p>{error}</p>
         ) : (
@@ -67,6 +109,8 @@ const BookingList = () => {
                 <th>Date</th>
                 <th>Slot ID</th>
                 <th>Table ID</th>
+                <th>Edit</th>
+                <th>Cancel</th>
               </tr>
             </thead>
             <tbody>
@@ -78,6 +122,12 @@ const BookingList = () => {
                   <td>{booking.date}</td>
                   <td>{booking.slot_id}</td>
                   <td>{booking.table_id}</td>
+                  <td>
+                    <button onClick={() => handleEditBooking(booking.booking_id)}>Edit</button>
+                  </td>
+                  <td>
+                    <button onClick={() => handleCancelBooking(booking.booking_id)}>Cancel</button>
+                  </td>
                 </tr>
               ))}
             </tbody>

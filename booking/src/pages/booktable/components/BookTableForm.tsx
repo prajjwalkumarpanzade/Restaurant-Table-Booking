@@ -1,5 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
+import "../container/BookAdminTable.css"
+
 
 interface Slot {
   slot_id: number;
@@ -13,8 +15,9 @@ const BookTableForm = () => {
     Name: "",
     contactno: "",
     number: 1,
-    date: new Date().toISOString().split("T")[0],
-    slot: ""
+    date: "",
+    slot: "",
+    table: 0 
   });
 
   const [slots, setSlots] = useState<Slot[]>([]);
@@ -45,7 +48,16 @@ const BookTableForm = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
+      table: 0 
+    }));
+  };
+
+  const handleTableChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      table: parseInt(value) 
     }));
   };
 
@@ -56,23 +68,30 @@ const BookTableForm = () => {
       return;
     }
     try {
-      const selectedSlot = slots.find((slot) => slot.slot_id.toString() === formData.slot);
+      
+      if (!formData.slot || !formData.table) {
+        alert("Please select a slot and a table.");
+        return;
+      }
+
+      const selectedSlot = slots.find((slot) => slot.slot_id === parseInt(formData.slot));
 
       if (!selectedSlot) {
         alert("Please select a valid slot.");
         return;
       }
 
-      // Choose a random table from the available tables for the selected slot
-      const randomTableIndex = Math.floor(Math.random() * selectedSlot.table_id.length);
-      const selectedTableId = selectedSlot.table_id[randomTableIndex];
+      if (!selectedSlot.table_id.includes(formData.table)) {
+        alert("The selected table is not available for this slot.");
+        return;
+      }
 
       await axios.post("http://localhost:8080/bookings", {
         customer_name: formData.Name,
         contact_no: formData.contactno,
         date: formData.date,
-        slot_id: formData.slot,
-        table_id: selectedTableId 
+        slot_id: parseInt(formData.slot),
+        table_id: formData.table 
       });
 
       alert("Table booked successfully!");
@@ -81,7 +100,8 @@ const BookTableForm = () => {
         contactno: "",
         number: 1,
         date: new Date().toISOString().split("T")[0],
-        slot: ""
+        slot: "",
+        table: 0
       });
     } catch (error) {
       console.error("Error booking table:", error);
@@ -90,8 +110,10 @@ const BookTableForm = () => {
   };
 
   return (
+    <div>
+      
     <div className="book-table-form">
-      <h1 style={{color:"black"}}>Book Table</h1>
+      <h1>Book Table</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
@@ -154,8 +176,25 @@ const BookTableForm = () => {
             ))}
           </select>
         </div>
+        <div className="form-group">
+          <select
+            className="form-select"
+            name="table"
+            value={formData.table}
+            onChange={handleTableChange}
+            required
+          >
+            <option value={0}>Select a table</option>
+            {formData.slot && slots.find((slot) => slot.slot_id === parseInt(formData.slot))?.table_id.map((table) => (
+              <option key={table} value={table}>
+                Table {table}
+              </option>
+            ))}
+          </select>
+        </div>
         <button type="submit">Book</button>
       </form>
+    </div>
     </div>
   );
 };

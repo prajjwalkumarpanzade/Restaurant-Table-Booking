@@ -8,13 +8,15 @@ import AdminDashboard from "../pages/admin_dashboard/container/admindashboard";
 import BookingList from "../pages/showbookings/components/BookingList";
 import Navbar from "../shared/Navbar";
 import UserList from "../pages/showusers/components/UserList";
+import BookAdminTable from "../pages/booktable/container/BookAdminTable";
 
 const Routes = () => {
   return (
     <RouterRoutes>
-      <Route path="/" element={<SignupPage />} />
+      <Route path="/" element={<BookTable/>} />
       <Route path="/signin" element={<SigninPage />} />
-      <Route path="/booktable" element={<BookTable />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/booktable" element={<BookAdminTable/>}/>
       <Route path="/admindashboard" element={<AdminDashboard />} />
       <Route path="/showbookings" element={<BookingList />} />
       <Route path="/showusers" element={<UserList/>} />

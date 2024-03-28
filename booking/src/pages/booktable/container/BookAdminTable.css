@@ -1,11 +1,5 @@
 
-body {
-    margin: 0;
-    padding: 0;
-    background-size: cover; 
-    background-repeat: no-repeat; 
-  }
-  .signup-container {
+.book-table-form {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
@@ -15,17 +9,17 @@ body {
     border: 0.5px solid grey;
   }
   
-  h2 {
+  .book-table-form h1 {
     text-align: center;
     margin-bottom: 30px;
   }
   
-  .form-group {
+  .book-table-form .form-group {
     position: relative;
     margin-bottom: 20px;
   }
   
-  input {
+  .book-table-form input {
     width: 90%;
     padding: 10px;
     font-size: 16px;
@@ -35,11 +29,11 @@ body {
     transition: border-color 0.3s ease;
   }
   
-  input:focus {
+  .book-table-form input:focus {
     border-color: #888;
   }
   
-  label {
+  .book-table-form label {
     position: absolute;
     top: 14px;
     left: 10px;
@@ -49,14 +43,14 @@ body {
     transition: top 0.3s, font-size 0.3s, color 0.3s;
   }
   
-  input:focus + label,
-  input:not(:placeholder-shown) + label {
+  .book-table-form input:focus + label,
+  .book-table-form input:not(:placeholder-shown) + label {
     top: 0;
     font-size: 12px;
     color: #888;
   }
   
-  button {
+  .book-table-form button {
     width: 100%;
     padding: 12px;
     font-size: 16px;
@@ -68,13 +62,12 @@ body {
     transition: background-color 0.3s ease;
   }
   
-  button:hover {
+  .book-table-form button:hover {
     background-color: #999;
   }
   
-  .active {
-    top: 0;
-    font-size: 12px;
-    color: #888;
+  h1{
+    color: black !important;
+    background-color: white;
+    width: 80%;
   }
-  
