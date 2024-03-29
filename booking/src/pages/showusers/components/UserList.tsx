@@ -22,7 +22,11 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get<User[]>("http://localhost:8080/admin/getuser");
+      const response = await axios.get<User[]>("http://localhost:8080/admin/getusers", {
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+      });
       setUsers(response.data);
       setLoading(false);
     } catch (error) {

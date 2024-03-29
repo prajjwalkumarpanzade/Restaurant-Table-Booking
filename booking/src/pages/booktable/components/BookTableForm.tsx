@@ -28,7 +28,11 @@ const BookTableForm = () => {
 
   const fetchSlots = async () => {
     try {
-      const response = await axios.get<Slot[]>("http://localhost:8080/getslots");
+      const response = await axios.get<Slot[]>("http://localhost:8080/getslots",{
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+      });
       setSlots(response.data);
     } catch (error) {
       console.error("Error fetching slots:", error);
@@ -85,14 +89,18 @@ const BookTableForm = () => {
         alert("The selected table is not available for this slot.");
         return;
       }
-
       await axios.post("http://localhost:8080/bookings", {
         customer_name: formData.Name,
         contact_no: formData.contactno,
         date: formData.date,
         slot_id: parseInt(formData.slot),
-        table_id: formData.table 
+        table_id: formData.table
+      }, {
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
       });
+      
 
       alert("Table booked successfully!");
       setFormData({

@@ -15,11 +15,13 @@ const SignInForm = () => {
 
   const handleSubmit = async (values: { email: string, password: string }, { setSubmitting, resetForm }: any) => {
     try {
-      await axios.post("http://localhost:8080/admin/login", values);
+      const response = await axios.post("http://localhost:8080/login", values);
+      const { token } = response.data; 
+      localStorage.setItem('token', token); 
       alert("User signed in successfully!");
       setSubmitting(false);
       resetForm();
-      navigate("/admindashboard"); 
+      navigate("/admindashboard");
     } catch (error) {
       console.error("Error signing in:", error);
       alert("Invalid Credentials");
@@ -40,14 +42,12 @@ const SignInForm = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            
             <Field type="email" name="email" placeholder="Email" />
             <ErrorMessage name="email" component="div" className="error" />
 
             <Field type="password" name="password" placeholder="Password" />
             <ErrorMessage name="password" component="div" className="error" />
 
-            
             <button type="submit" disabled={isSubmitting}>Sign In</button>
           </Form>
         )}

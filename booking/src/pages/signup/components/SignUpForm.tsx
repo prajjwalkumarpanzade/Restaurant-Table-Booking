@@ -10,29 +10,34 @@ const SignUpForm = () => {
     name: "",
     email: "",
     contact_no: "",
-    password: ""
+    password: "",
+    role: "customer",
+
   });
 
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
     try {
-      await axios.post("http://localhost:8080/admin/create", formData);
+      await axios.post("http://localhost:8080/signup", formData);
       alert("User signed up successfully!");
       setFormData({
         name: "",
         email: "",
         contact_no: "",
-        password: ""
+        password: "",
+        role: "customer",
+
       });
       navigate("/SignIn");
     } catch (error) {
@@ -79,6 +84,17 @@ const SignUpForm = () => {
           minLength={6}
           required
         />
+          <label htmlFor="role">Role:</label>
+          <select
+            id="role"
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            required
+          >
+            <option value="customer">Customer</option>
+            <option value="admin">Admin</option>
+          </select>
         <button type="submit">Sign Up</button>
       </form>
       <p style={{color:"black"}}>Already have an account? <a href="/signin">Sign In</a></p>

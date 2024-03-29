@@ -1,0 +1,21 @@
+======Vehicle rental===== 
+
+rent update back
+password visibal front
+update error msg invalid credintial both
+notification via email or msg back improvement
+predefin places improvement back
+capacity of car back
+pagination both
+datatype extra cost 0 not null
+
+=====Table Booking =====
+go through rtk, redux store and structure (sandhya)
+awt authentication backend
+
+Time slots (both) 
+Validations for signup and name.
+Edit operation.
+Cancel table should show a pop up.
+
+

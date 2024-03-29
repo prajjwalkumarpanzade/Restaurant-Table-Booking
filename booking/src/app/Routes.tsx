@@ -6,7 +6,6 @@ import SigninPage from "../pages/signin/container/SignIn";
 import BookTable from "../pages/booktable/container/BookTable";
 import AdminDashboard from "../pages/admin_dashboard/container/admindashboard";
 import BookingList from "../pages/showbookings/components/BookingList";
-import Navbar from "../shared/Navbar";
 import UserList from "../pages/showusers/components/UserList";
 import BookAdminTable from "../pages/booktable/container/BookAdminTable";
 

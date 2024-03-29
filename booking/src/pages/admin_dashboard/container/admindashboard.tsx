@@ -18,7 +18,11 @@ const AdminDashboard = () => {
 
   const fetchSlots = async () => {
     try {
-      const response = await axios.get<Slot[]>("http://localhost:8080/getslots");
+      const response = await axios.get<Slot[]>("http://localhost:8080/getslots",{
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+      });
       setSlots(response.data);
     } catch (error) {
       console.error("Error fetching slots:", error);

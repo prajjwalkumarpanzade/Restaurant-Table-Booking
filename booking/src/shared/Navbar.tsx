@@ -6,6 +6,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     
+    localStorage.removeItem("token")
     window.location.href = "/signin";
     navigate("/");
   };

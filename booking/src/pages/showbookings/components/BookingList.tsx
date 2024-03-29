@@ -32,7 +32,11 @@ const BookingList = () => {
 
   const fetchBookings = async () => {
     try {
-      const response = await axios.get<Booking[]>("http://localhost:8080/admin/get_details");
+      const response = await axios.get<Booking[]>("http://localhost:8080/admin/get_details",{
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+      });
       setBookings(response.data);
     } catch (error) {
       console.error("Error fetching bookings:", error);
@@ -42,7 +46,11 @@ const BookingList = () => {
 
   const fetchSlots = async () => {
     try {
-      const response = await axios.get<Slot[]>("http://localhost:8080/getslots");
+      const response = await axios.get<Slot[]>("http://localhost:8080/getslots",{
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+      });
       setSlots(response.data);
     } catch (error) {
       console.error("Error fetching slots:", error);
@@ -59,7 +67,7 @@ const BookingList = () => {
         return;
       }
 
-      await axios.put(`http://localhost:8080/admin/update_table/${bookingId}`, {
+      await axios.put(`http://localhost:8080/admin/update_table/{booking_id}`, {
         bookingId:bookingId,
         customer_name: bookingToEdit.customer_name,
         contact_no: bookingToEdit.contact_no,
@@ -67,6 +75,10 @@ const BookingList = () => {
         slot_id: bookingToEdit.slot_id,
         table_id: bookingToEdit.table_id
         
+      },{
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
       });
       navigate("/booktable")
     } catch (error) {
@@ -81,7 +93,11 @@ const BookingList = () => {
   const handleCancelBooking = async (bookingId: number) => {
     console.log(bookingId);
     try {
-      await axios.delete(`http://localhost:8080/admin/cancel_table/${bookingId}`);
+      await axios.delete(`http://localhost:8080/admin/cancel_table/{booking_id}`,{
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+      });
       
       console.log("Booking canceled successfully:", bookingId);
       
