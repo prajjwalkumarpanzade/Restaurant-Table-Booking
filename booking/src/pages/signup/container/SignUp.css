@@ -2,6 +2,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-image: "src\assets\restaurant.png";
     background-size: cover; 
     background-repeat: no-repeat; 
   }

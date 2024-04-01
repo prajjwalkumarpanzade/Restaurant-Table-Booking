@@ -4,6 +4,7 @@ import { FormikValues, FormikHelpers } from "formik";
 import InputField from "./InputField";
 import { useNavigate } from "react-router-dom";
 import "../container/SignUpForm.css";
+import { toast } from "react-toastify";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +31,7 @@ const SignUpForm = () => {
     e.preventDefault(); 
     try {
       await axios.post("http://localhost:8080/signup", formData);
-      alert("User signed up successfully!");
+      toast.dark("User signed up successfully!");
       setFormData({
         name: "",
         email: "",
@@ -39,10 +40,10 @@ const SignUpForm = () => {
         role: "customer",
 
       });
-      navigate("/SignIn");
+      navigate("/");
     } catch (error) {
       console.error("Error signing up:", error);
-      alert("Enter valid Data");
+      toast.dark("Enter valid Data");
     }
   };
 
@@ -97,7 +98,7 @@ const SignUpForm = () => {
           </select>
         <button type="submit">Sign Up</button>
       </form>
-      <p style={{color:"black"}}>Already have an account? <a href="/signin">Sign In</a></p>
+      <p style={{color:"black"}}>Already have an account? <a href="/">Sign In</a></p>
     </div>
   );
 };

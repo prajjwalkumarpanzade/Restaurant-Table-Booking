@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../container/UserList.css";
 import Navbar from "../../../shared/Navbar";
+import { isAdmin } from "../../../shared/role";
+import { toast } from "react-toastify"; 
 
 
 interface User {
@@ -31,7 +33,7 @@ const UserList = () => {
       setLoading(false);
     } catch (error) {
       console.error("Error fetching users:", error);
-      alert("An error occurred while fetching users. Please try again.");
+      toast.dark("An error occurred while fetching users. Please try again.");
     }
   };
 

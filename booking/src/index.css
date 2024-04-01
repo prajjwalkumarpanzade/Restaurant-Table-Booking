@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+    padding: 0;
+    background-image: "src/assets/restaurant.png";
+    background-size: cover; 
+    background-repeat: no-repeat; 
+  
 }
 
 code {

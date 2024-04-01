@@ -4,6 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom";
 import "../container/SignIn.css";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -18,13 +20,13 @@ const SignInForm = () => {
       const response = await axios.post("http://localhost:8080/login", values);
       const { token } = response.data; 
       localStorage.setItem('token', token); 
-      alert("User signed in successfully!");
+      toast.dark("User signed in successfully!");
       setSubmitting(false);
       resetForm();
       navigate("/admindashboard");
     } catch (error) {
       console.error("Error signing in:", error);
-      alert("Invalid Credentials");
+      toast.dark("Invalid Credentials");
       setSubmitting(false);
     }
   };
